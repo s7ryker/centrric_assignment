@@ -7,9 +7,13 @@ class Quiz with ChangeNotifier {
   bool hasFinshed = false;
   bool hasAnswered = false;
   String selectedAnswer;
+  int score = 0;
+  int correctAnswers = 0;
+  int wrongAnswers = 0;
+  int streak = 0;
   List<Question> _questions = [
     Question(
-      question: 'Which Planet In Our Solar System is Known as Red Planet?',
+      question: 'Which Planet In Our Solar System is Known as Red Planer',
       options: {
         1: 'Alexander Fleming',
         2: 'Alexander Graham Bell',
@@ -50,8 +54,13 @@ class Quiz with ChangeNotifier {
     selectedAnswer = answer;
     if (answer == _questions[i].answer) {
       print('Correct');
+      streak++;
+      score += 10;
+      correctAnswers++;
     } else {
       print('wrong');
+      streak = 0;
+      wrongAnswers++;
     }
 
     notifyListeners();
